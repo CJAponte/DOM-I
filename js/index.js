@@ -9,7 +9,7 @@ const siteContent = {
     "img-src": "img/logo.png"
   },
   "cta": {
-    "h1": "DOM Is Awesome",
+    "h1": `DOM Is \n Awesome`,
     "button": "Get Started",
     "img-src": "img/header-img.png"
   },
@@ -28,7 +28,7 @@ const siteContent = {
   },
   "contact": {
     "contact-h4" : "Contact",
-    "address" : "123 Way 456 Street Somewhere, USA",
+    "address" : `123 Way 456 Street Somewhere, USA`,
     "phone" : "1 (888) 888-8888",
     "email" : "sales@greatidea.io",
   },
@@ -38,7 +38,52 @@ const siteContent = {
 };
 
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+const logo = document.getElementById("logo-img");
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
-lsl
+const navigationBar = document.querySelectorAll("header nav a");
+
+(()=>{
+  for(let i = 0; i < navigationBar.length; i++){
+    navigationBar[i].textContent = siteContent["nav"][`nav-item-${i + 1}`]
+  }
+})();
+
+const headerText = document.querySelector(".cta .cta-text h1")
+headerText.textContent = siteContent["cta"]["h1"]
+
+const headerButton = document.querySelector(".cta .cta-text button")
+headerButton.textContent = siteContent["cta"]["button"]
+
+const headerIMG = document.getElementById("cta-img")
+headerIMG.setAttribute('src', siteContent["cta"]["img-src"])
+
+
+const contentTextHeader = document.querySelectorAll(".text-content h4")
+const contentTextBody = document.querySelectorAll(".text-content p")
+const middleImg = document.getElementById("middle-img")
+
+middleImg.setAttribute('src', siteContent["main-content"]["middle-img-src"])
+
+contentTextHeader[0].textContent = siteContent["main-content"]["features-h4"]
+contentTextHeader[1].textContent = siteContent["main-content"]["about-h4"]
+contentTextHeader[2].textContent = siteContent["main-content"]["services-h4"]
+contentTextHeader[3].textContent = siteContent["main-content"]["product-h4"]
+contentTextHeader[4].textContent = siteContent["main-content"]["vision-h4"]
+
+contentTextBody[0].textContent = siteContent["main-content"]["features-content"]
+contentTextBody[1].textContent = siteContent["main-content"]["about-content"]
+contentTextBody[2].textContent = siteContent["main-content"]["services-content"]
+contentTextBody[3].textContent = siteContent["main-content"]["product-content"]
+contentTextBody[4].textContent = siteContent["main-content"]["vision-content"]
+
+const contactHeader = document.querySelector(".contact h4")
+const contactBody = document.querySelectorAll(".contact p")
+
+contactHeader.textContent = siteContent["contact"]["contact-h4"];
+
+
+contactBody[0].textContent = siteContent["contact"]["address"]
+contactBody[1].textContent = siteContent["contact"]["phone"]
+contactBody[2].textContent = siteContent["contact"]["email"]
+
