@@ -9,7 +9,7 @@ const siteContent = {
     "img-src": "img/logo.png"
   },
   "cta": {
-    "h1": `DOM Is \n Awesome`,
+    "h1": `DOM <br> is <br> Awesome`,
     "button": "Get Started",
     "img-src": "img/header-img.png"
   },
@@ -28,7 +28,7 @@ const siteContent = {
   },
   "contact": {
     "contact-h4" : "Contact",
-    "address" : `123 Way 456 Street Somewhere, USA`,
+    "address" : `123 Way 456 Street <br> Somewhere, USA`,
     "phone" : "1 (888) 888-8888",
     "email" : "sales@greatidea.io",
   },
@@ -41,19 +41,43 @@ const siteContent = {
 const logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
+const lineBreak = document.createElement("br")
+
 const navigationBar = document.querySelectorAll("header nav a");
+
+let forumItem = document.createElement('a');
+let homeItem = document.createElement('a');
+let forumPageNavItem = document.createTextNode(" Forum");
+let HomePageNavItem = document.createTextNode("Home ");
+forumItem.appendChild(forumPageNavItem);
+homeItem.appendChild(HomePageNavItem);
+
 
 (()=>{
   for(let i = 0; i < navigationBar.length; i++){
     navigationBar[i].textContent = siteContent["nav"][`nav-item-${i + 1}`]
+    navigationBar[i].style.color = "green";
   }
 })();
 
+navigationBar[navigationBar.length - 1].appendChild(forumPageNavItem)
+navigationBar[0].prepend(HomePageNavItem)
+console.log(navigationBar);
+
+
+
 const headerText = document.querySelector(".cta .cta-text h1")
-headerText.textContent = siteContent["cta"]["h1"]
+headerText.innerHTML = siteContent["cta"]["h1"]
 
 const headerButton = document.querySelector(".cta .cta-text button")
 headerButton.textContent = siteContent["cta"]["button"]
+
+
+function colorChangeHeader (){
+  headerText.style.color = "blue"
+}
+
+headerButton.addEventListener("click", colorChangeHeader)
 
 const headerIMG = document.getElementById("cta-img")
 headerIMG.setAttribute('src', siteContent["cta"]["img-src"])
@@ -83,7 +107,7 @@ const contactBody = document.querySelectorAll(".contact p")
 contactHeader.textContent = siteContent["contact"]["contact-h4"];
 
 
-contactBody[0].textContent = siteContent["contact"]["address"]
+contactBody[0].innerHTML = siteContent["contact"]["address"]
 contactBody[1].textContent = siteContent["contact"]["phone"]
 contactBody[2].textContent = siteContent["contact"]["email"]
 
